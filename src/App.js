@@ -33,6 +33,17 @@ const loaderStyle = {
   alignItems: 'center'
 };
 
+const buttonStyle = {
+  borderRadius: '5px',
+  width: '100%',
+  backgroundColor: '#9E8CCC',
+  border: '0px',
+  color: 'white',
+  padding: '10px',
+  marginTop: '10px',
+  fontSize: '20px',
+};
+
 const App = () => {
   const [configuration, setConfiguration] = useState(defaultSettings);
 
@@ -204,7 +215,7 @@ const App = () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', paddingTop: '15px' }}>
       <div ref={tyroJSRef}>
         {error.type ? (
           <div className={'error-container'}>
@@ -214,18 +225,17 @@ const App = () => {
         {payComplete ? (
           <>Payment has been completed.</>
         ) : (
-          <><b style={{ paddingLeft: '8px', paddingBottom: '3px' }}>Enter card details</b><br />
-            <InfoCircleFilled style={{ paddingRight: '5px', paddingLeft: '8px', color: '#9E8CCC', fill: '#9E8CCC', paddingTop: '8px' }} />
-            <span style={{ position: 'absolute', paddingBottom: '5px', paddingTop: '4px' }}>Please ensure your card is enabled for online transactions.</span>
-            <form id="pay-form" style={{ paddingTop: '15px' }}>
+          <>
+            <form id="pay-form">
               <div id="pay-form-submitting-overlay" style={{ display: submittingOverlay ? 'block' : 'none', position: 'absolute', width: '100%', height: '100%', backgroundColor: 'rgba(255,255,255,0.5)' }}>
                 ... Submitting ...
               </div>
-
               <div id="tyro-pay-form" style={{ visibility: payRequestReady ? 'visible' : 'hidden' }}></div>
               {/* <LoadingButton type='submit' disabled={submitting} onClick={submitPayForm} loading={submitting} variant="contained" loadingPosition="start" style={{ visibility: payRequestReady ? 'visible' : 'hidden', borderRadius: '10px', width: '100%', backgroundColor: '#9E8CCC', border: '0px', color: 'white', padding: '10px', marginTop: '10px' }}  >Enter card details</LoadingButton> */}
-              <button id="pay-form-submit" onClick={submitPayForm} style={{ visibility: payRequestReady ? 'visible' : 'hidden', borderRadius: '25px', width: '100%', backgroundColor: '#9E8CCC', border: '0px', color: 'white', padding: '10px', marginTop: '10px' }} disabled={submitting}>Enter card details</button>
-
+              <button id="pay-form-submit" onClick={submitPayForm} style={{
+                ...buttonStyle,
+                visibility: payRequestReady ? 'visible' : 'hidden'
+              }} disabled={submitting}>Add Card</button>
             </form>
           </>
         )}
