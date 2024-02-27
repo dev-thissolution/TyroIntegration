@@ -12,7 +12,10 @@ export const defaultSettings = {
   options: {
     applePay: {
       enabled: true,
-    }
+    },
+    googlePay: {
+      enabled: true
+    },
   },
 };
 
@@ -59,7 +62,7 @@ const App = () => {
     script.onload = () => setLibraryReady(true);
     document.body.appendChild(script);
 
-     if (buttonBorderRadius) {
+    if (buttonBorderRadius) {
       setButtonStyle(prevStyle => ({
         ...prevStyle,
         borderRadius: buttonBorderRadius + 'px'
@@ -77,7 +80,7 @@ const App = () => {
     setLoading(true);
   }, []);
 
-  
+
 
   // STEP 2, Fetch the Pay Secret
   useEffect(() => {
@@ -111,7 +114,7 @@ const App = () => {
       // @ts-ignore
       /* eslint-disable no-undef */
       tyroJSRef.current.tyroJSInstance = Tyro({
-        liveMode: false,
+        liveMode: false, // TODO:: need to set true for production only.
       });
       await tyroJSRef.current.tyroJSInstance.init(paySecret);
       const payFormElement = document.getElementById('tyro-pay-form');
