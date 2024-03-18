@@ -11,7 +11,7 @@ export const defaultSettings = {
   },
   options: {
     applePay: {
-      enabled: false,
+      enabled: true,
     },
     googlePay: {
       enabled: false
